@@ -9,7 +9,6 @@ import zerobase.weather.WeatherApplication;
 import zerobase.weather.domain.DateWeather;
 import zerobase.weather.domain.Diary;
 import zerobase.weather.repository.DiaryRepository;
-import zerobase.weather.repository.DateWeatherRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,8 +21,7 @@ public class DiaryService {
     private static final Logger logger = LoggerFactory.getLogger(WeatherApplication.class);
 
     public DiaryService(WeatherService weatherService,
-                        DiaryRepository diaryRepository,
-                        DateWeatherRepository weatherRepository) {
+                        DiaryRepository diaryRepository) {
         this.weatherService = weatherService;
         this.diaryRepository = diaryRepository;
     }

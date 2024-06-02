@@ -34,8 +34,8 @@ public class WeatherService {
 
     private static final Logger logger = LoggerFactory.getLogger(WeatherApplication.class);
 
-    public WeatherService(DateWeatherRepository weatherRepository) {
-        this.weatherRepository = weatherRepository;
+    public WeatherService(DateWeatherRepository dateWeatherRepository) {
+        this.weatherRepository = dateWeatherRepository;
     }
 
     @Transactional
