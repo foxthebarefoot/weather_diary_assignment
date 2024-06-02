@@ -9,7 +9,7 @@ import zerobase.weather.WeatherApplication;
 import zerobase.weather.domain.DateWeather;
 import zerobase.weather.domain.Diary;
 import zerobase.weather.repository.DiaryRepository;
-import zerobase.weather.repository.WeatherRepository;
+import zerobase.weather.repository.DateWeatherRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +23,7 @@ public class DiaryService {
 
     public DiaryService(WeatherService weatherService,
                         DiaryRepository diaryRepository,
-                        WeatherRepository weatherRepository) {
+                        DateWeatherRepository weatherRepository) {
         this.weatherService = weatherService;
         this.diaryRepository = diaryRepository;
     }

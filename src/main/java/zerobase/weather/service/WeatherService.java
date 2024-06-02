@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import zerobase.weather.WeatherApplication;
 import zerobase.weather.domain.DateWeather;
-import zerobase.weather.repository.WeatherRepository;
+import zerobase.weather.repository.DateWeatherRepository;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -30,11 +30,11 @@ public class WeatherService {
     @Value("${openweathermap.key}")
     private String apiKey;
 
-    private final WeatherRepository weatherRepository;
+    private final DateWeatherRepository weatherRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(WeatherApplication.class);
 
-    public WeatherService(WeatherRepository weatherRepository) {
+    public WeatherService(DateWeatherRepository weatherRepository) {
         this.weatherRepository = weatherRepository;
     }
 
