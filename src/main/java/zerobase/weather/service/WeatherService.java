@@ -49,8 +49,15 @@ public class WeatherService {
     public DateWeather getDateWeather(LocalDate date) {
         List<DateWeather> dateWeatherList = weatherRepository.findAllByDate(date);
         if (dateWeatherList.size() == 0) {
-            logger.info("Get Now Weather Information from API");
-            return getWeatherFromApi();
+            List<DateWeather> todayWeatherList = weatherRepository.findAllByDate(LocalDate.now());
+            if (todayWeatherList.size() == 0) {
+                logger.info("Get Now Weather Information from API");
+                DateWeather todayWeather = getWeatherFromApi();
+                weatherRepository.save(todayWeather);
+                return todayWeather;
+            } else {
+                return todayWeatherList.get(0);
+            }
         } else {
             logger.info("Get Weather Information from DB");
             return dateWeatherList.get(0);

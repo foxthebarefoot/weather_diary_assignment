@@ -28,7 +28,7 @@ public class DiaryService {
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void createDiary(LocalDate date, String text) {
-        logger.info("started to create diary");
+        logger.info("started to create diary of {}", date);
         // 날씨 데이터 가져오기
         DateWeather dateWeather = weatherService.getDateWeather(date);
 
@@ -37,7 +37,7 @@ public class DiaryService {
         diary.setDate(date);
         diary.setText(text);
         diaryRepository.save(diary);
-        logger.info("finished to create diary");
+        logger.info("finished to create diary of {}", date);
     }
 
     @Transactional(readOnly = true)
@@ -54,16 +54,17 @@ public class DiaryService {
 
     @Transactional
     public void updateDiary(LocalDate date, String text) {
-        Diary nowDiary = diaryRepository.getFirstByDate(date);
-        nowDiary.setText(text);
-        diaryRepository.save(nowDiary); // save 함수로 덮어쓰기가 된다.
-        logger.info("finished to update diary");
+        Diary diary = diaryRepository.getFirstByDate(date);
+        logger.info("read diary for update of {}", date);
+        diary.setText(text);
+        diaryRepository.save(diary); // save 함수로 덮어쓰기가 된다.
+        logger.info("finished to update diary of {}", date);
     }
 
     @Transactional
     public void deleteDiary(LocalDate date) {
         diaryRepository.deleteAllByDate(date);
-        logger.info("finished to delete diary");
+        logger.info("finished to delete diary of {}", date);
     }
 
 }
